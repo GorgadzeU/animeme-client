@@ -1,29 +1,27 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
 import PageWrapper from '../components/UI/page-wrapper';
 import AnimeList from '../containers/anime-list.container';
-import Carousel from '../components/carousel.component';
 
-import { FetcAnimeListStart } from '../redux/anime/anime.actions';
+import { FetchAnimeByCatStart } from '../redux/anime/anime.actions';
 
-const MainPage = ({ FetcAnimeListStart, animeList }) => {
+const CategoryPage = ({ match, fetchCatAnimes, animeList }) => {
   useEffect(() => {
-    FetcAnimeListStart();
-  }, []);
+    fetchCatAnimes(match.params.category);
+  }, [match.params.category, fetchCatAnimes]);
   return (
     <PageWrapper>
-      <Carousel />
       <AnimeList animeList={animeList} />
     </PageWrapper>
   );
 };
 
 const mapStateToProps = (state) => ({
-  animeList: state.anime.animeList,
+  animeList: state.anime.animeCatList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  FetcAnimeListStart: () => dispatch(FetcAnimeListStart()),
+  fetchCatAnimes: (cat) => dispatch(FetchAnimeByCatStart(cat)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

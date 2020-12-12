@@ -55,17 +55,17 @@ const CardInfoDesc = styled.div`
   font-size: 1.3rem;
 `;
 
-const AnimeCard = ({ title, desc, image, malRating }) => {
+const AnimeCard = ({ name, description, image }) => {
   return (
     <Card image={image}>
       <CardInfo>
-        <CardInfoTitle>{title}</CardInfoTitle>
+        <CardInfoTitle>{name}</CardInfoTitle>
         <CardInfoDetails>
           <span>Year: 1996</span>
           <span>Episodes: 25</span>
-          <span>MAL Rating: {malRating}</span>
+          {/* <span>MAL Rating: {malRating}</span> */}
         </CardInfoDetails>
-        <CardInfoDesc>{desc}</CardInfoDesc>
+        <CardInfoDesc>{description}</CardInfoDesc>
       </CardInfo>
     </Card>
   );

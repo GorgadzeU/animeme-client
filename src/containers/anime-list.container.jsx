@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import AnimeCard from '../components/anime-card.component';
 
@@ -16,21 +15,19 @@ const AnimeList = ({ animeList }) => {
     <AnimeListWrapper>
       {animeList &&
         animeList.length > 0 &&
-        animeList.map(({ title, image, desc, malRating, id }) => (
-          <AnimeCard
-            key={id}
-            image={image}
-            title={title}
-            desc={desc}
-            malRating={malRating}
-          />
-        ))}
+        animeList.map(({ name, image, description, malRating, _id }) => {
+          return (
+            <AnimeCard
+              key={_id}
+              image={image}
+              name={name}
+              description={description}
+              malRating={malRating}
+            />
+          );
+        })}
     </AnimeListWrapper>
   );
 };
 
-const mapStateToProps = (state) => ({
-  animeList: state.anime.animeList,
-});
-
-export default connect(mapStateToProps)(AnimeList);
+export default AnimeList;
