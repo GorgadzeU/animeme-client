@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import AnimeCard from '../components/anime-card.component';
+import React from "react";
+import styled from "styled-components";
+import AnimeCard from "../components/anime-card.component";
 
 const AnimeListWrapper = styled.div`
   width: 100%;
@@ -15,17 +15,20 @@ const AnimeList = ({ animeList }) => {
     <AnimeListWrapper>
       {animeList &&
         animeList.length > 0 &&
-        animeList.map(({ name, image, description, malRating, _id }) => {
-          return (
-            <AnimeCard
-              key={_id}
-              image={image}
-              name={name}
-              description={description}
-              malRating={malRating}
-            />
-          );
-        })}
+        animeList.map(
+          ({ name, image, description, malRating, _id, year = "test" }) => {
+            return (
+              <AnimeCard
+                key={_id}
+                image={image}
+                name={name}
+                description={description}
+                malRating={malRating}
+                year={year}
+              />
+            );
+          }
+        )}
     </AnimeListWrapper>
   );
 };

@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { DARK } from './UI/colors';
+import React from "react";
+import styled from "styled-components";
+import { DARK } from "./UI/colors";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.header`
   background-color: ${DARK};
@@ -57,8 +57,8 @@ const Nav = styled.nav`
 `;
 
 const NavItem = styled.span`
-  color: #fff;
-  padding: 5px 10px;
+  color: #d5015b;
+  padding: 5px 40px;
   border-right: 1px solid grey;
   cursor: pointer;
 `;
@@ -73,7 +73,7 @@ const Header = () => {
         <NavItem>Contact</NavItem>
         <NavItem>Sing In</NavItem>
         <CategoryDropdown>
-          <Link to='/seinen'>Seinen</Link>
+          <Link to="/seinen">Seinen</Link>
           <span>Fantasy</span>
           <span>Shounen</span>
         </CategoryDropdown>

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const CardInfo = styled.div`
   position: absolute;
@@ -55,13 +55,13 @@ const CardInfoDesc = styled.div`
   font-size: 1.3rem;
 `;
 
-const AnimeCard = ({ name, description, image }) => {
+const AnimeCard = ({ name, description, image, year }) => {
   return (
     <Card image={image}>
       <CardInfo>
         <CardInfoTitle>{name}</CardInfoTitle>
         <CardInfoDetails>
-          <span>Year: 1996</span>
+          <span>Year: {year}</span>
           <span>Episodes: 25</span>
           {/* <span>MAL Rating: {malRating}</span> */}
         </CardInfoDetails>
