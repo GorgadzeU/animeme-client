@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { DARK } from '../components/UI/colors';
+import React from "react";
+import styled from "styled-components";
+import { DARK } from "../components/UI/colors";
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  height: 100px;
+  height: 75px;
   background-color: ${DARK};
 `;
 
