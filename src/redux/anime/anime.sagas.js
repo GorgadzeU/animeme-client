@@ -1,6 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-import axios from 'axios';
-import qs from 'qs';
+// import axios from 'axios';
+import {Axios} from '../../providers/axios'
 import { FETCH_ANIME_LIST_START, FETCH_ANIME_CAT_START } from './anime.types';
 import {
   FetchAnimeListSuccess,
@@ -11,7 +11,8 @@ import {
 
 export function* fetchAnimeListAsync() {
   try {
-    const { data } = yield axios.get('http://localhost:5000/animes/all');
+    // const { data } = yield axios.get('https://animeme-beta.herokuapp.com/animes/all');
+    const {data} = yield Axios.get('/animes/all')
     yield put(FetchAnimeListSuccess(data));
   } catch (err) {
     yield put(FetchAnimeListFail(err));
@@ -20,8 +21,8 @@ export function* fetchAnimeListAsync() {
 
 export function* fetchAnimeByCatAsync({ payload }) {
   try {
-    const { data } = yield axios.get(
-      `http://localhost:5000/animes/category/${payload}`
+    const { data } = yield Axios.get(
+      `/animes/category/${payload}`
     );
 
     yield put(FetchAnimeByCatSuccess(data));

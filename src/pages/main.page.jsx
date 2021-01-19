@@ -10,7 +10,7 @@ import { FetcAnimeListStart } from '../redux/anime/anime.actions';
 const MainPage = ({ FetcAnimeListStart, animeList }) => {
   useEffect(() => {
     FetcAnimeListStart();
-  }, []);
+  }, [FetcAnimeListStart]);
   return (
     <PageWrapper>
       <Carousel />

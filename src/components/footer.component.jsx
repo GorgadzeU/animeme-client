@@ -4,7 +4,7 @@ import { DARK } from '../components/UI/colors';
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  height: 100px;
+  height: 50px;
   background-color: ${DARK};
 `;
 

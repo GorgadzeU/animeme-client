@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DARK } from './colors';
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -9,8 +8,8 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const PageWrapper = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+const PageWrapper = ({ children, className }) => {
+  return <Wrapper className={className}>{children}</Wrapper>;
 };
 
 export default PageWrapper;
