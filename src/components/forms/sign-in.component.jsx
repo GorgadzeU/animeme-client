@@ -25,6 +25,7 @@ const Message = styled.span`
 
 const SignIn = ({ onShowSignUp, loginStart }) => {
   const [creds, setCreds] = useState({ email: '', password: '' });
+  console.log(creds);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -36,6 +37,10 @@ const SignIn = ({ onShowSignUp, loginStart }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setCreds((prevState) => ({
+      email: prevState.email,
+      password: '',
+    }));
     loginStart(creds);
   };
 
@@ -46,12 +51,14 @@ const SignIn = ({ onShowSignUp, loginStart }) => {
         <Input
           name='email'
           type='email'
+          value={creds.email}
           placeholder='Email'
           onChange={(e) => onChange(e)}
         />
         <Input
           name='password'
           type='password'
+          value={creds.password}
           placeholder='Password'
           onChange={(e) => onChange(e)}
         />

@@ -30,6 +30,7 @@ const SignUp = ({ onShowSignIn, registerStart }) => {
     password: '',
     password_confirm: '',
   });
+  const { name, email, password, password_confirm } = creds;
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -41,6 +42,11 @@ const SignUp = ({ onShowSignIn, registerStart }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setCreds((prevState) => ({
+      ...prevState,
+      password: '',
+      password_confirm: '',
+    }));
     registerStart(creds);
   };
 
@@ -51,24 +57,28 @@ const SignUp = ({ onShowSignIn, registerStart }) => {
         <Input
           name='name'
           type='text'
+          value={name}
           placeholder='Name'
           onChange={(e) => onChange(e)}
         />
         <Input
           name='email'
           type='email'
+          value={email}
           placeholder='Email'
           onChange={(e) => onChange(e)}
         />
         <Input
           name='password'
           type='password'
+          value={password}
           placeholder='Password'
           onChange={(e) => onChange(e)}
         />
         <Input
           name='password_confirm'
           type='password'
+          value={password_confirm}
           placeholder='Confirm password'
           onChange={(e) => onChange(e)}
         />

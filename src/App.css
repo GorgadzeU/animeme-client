@@ -8,6 +8,27 @@
   pointer-events: none;
 }
 
+.alert {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  display: flex;
+  padding: 0.8rem;
+  border-radius: 3px;
+  color: #333;
+  z-index: 1000;
+  color: black;
+}
+
+.alert-success {
+  background-color: green;
+}
+
+.alert-danger {
+  background-color: red;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

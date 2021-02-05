@@ -9,7 +9,9 @@ import {
   loadUserSuccess,
   loadUserFail,
 } from './auth.actions';
-import setAuthToken from '../../utils/auth';
+import { toast } from 'react-toastify';
+import { setAlertStart } from '../alert/alert.actions';
+import { closeForms } from '../forms/forms.actions';
 
 export function* registerAsync({ payload }) {
   const { name, email, password, password_confirm } = payload;
@@ -27,6 +29,7 @@ export function* registerAsync({ payload }) {
     });
     yield put(registerSuccess(data));
     yield call(loadUserAsync, { payload: data.token });
+    yield put(closeForms());
   } catch (err) {
     yield put(registerFail(err.response.data));
   }
@@ -47,8 +50,10 @@ export function* loginAsync({ payload }) {
     });
     yield put(loginSuccess(data));
     yield call(loadUserAsync, { payload: data.token });
-  } catch (err) {
-    yield put(loginFail(err.response.data));
+    yield put(closeForms());
+  } catch ({ response: { data } }) {
+    yield put(loginFail(data));
+    yield put(setAlertStart({ msg: data.msg, alertType: 'danger' }));
   }
 }
 
