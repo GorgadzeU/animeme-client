@@ -1,67 +1,71 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import IMG from '../assets/zerk.jpg'
+import IMG from '../assets/zerk.jpg';
 
 const Wrapper = styled.div`
-    width: 100%;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  width: 100%;
+  max-width: 1100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* height: 350px; */
+  margin: 200px auto 0px auto;
+  padding: 30px 50px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  color: white;
 
-    div {
-        margin: 0 10px;
-    }
-`
+  h1 {
+    margin-bottom: 50px;
+  }
+`;
 const Image = styled.div`
+  min-width: 220px;
+  width: 20%;
+  height: 100%;
+
+  img {
+    height: 330px;
     width: 100%;
-    height: 100%;
-
-    img {
-        width: 300px;
-        height: 100%;
-    }
-`
+  }
+`;
 const Description = styled.div`
-
-`
+  width: 40%;
+`;
 
 const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  width: 20%;
+  /* min-width: 400px; */
+`;
 
-`
+const AnimeSummary = ({
+  anime: { description, genres, image, name, year },
+}) => {
+  return (
+    <Wrapper>
+      <Image>
+        <img src={image} />
+      </Image>
+      <Description>
+        <h1>Description</h1>
+        {description}
+      </Description>
 
+      <Info>
+        <h1>Info</h1>
+        <span>name: {name}</span>
+        <span>genre: {genres.join(' , ')}</span>
+        <span>year: {year} </span>
+        <span>MAL: 9.9</span>
+      </Info>
+    </Wrapper>
+  );
+};
 
-const AnimeSummary = props => {
-    return (
-        <Wrapper>
-            <Image>
-                <img src={IMG}/>
-            </Image>
-            <Description>
-                Lorem ipsum dolor sit amet consectetur a
-                dipisicing elit. Sequi aut quibusdam laborum 
-                suscipit, quam ipsa aperiam dolore debitis quae
-                 tempore expedita ad molestiae laboriosam eaque
-                  corporis voluptas quo provident nesciunt et bland
-                  itiis molestias. Officiis recusandae non nobis voluptatum 
-                illum quod debitis velit aliquid commodi ipsa
-                 delectus aliquam doloribus, soluta cupiditate!
-            </Description>
+AnimeSummary.propTypes = {};
 
-            <Info>
-                <span>name: zerk</span>
-                <span>genre: zerk, zerk, zerk</span>
-                <span>episodes: 26</span>
-                <span>MAL: 9.9</span>
-            </Info>
-        </Wrapper>
-    )
-}
-
-AnimeSummary.propTypes = {
-
-}
-
-export default AnimeSummary
+export default AnimeSummary;

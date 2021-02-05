@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import AnimeCard from '../components/anime-card.component';
 
@@ -10,7 +11,7 @@ const AnimeListWrapper = styled.div`
   justify-content: center;
 `;
 
-const AnimeList = ({ animeList }) => {
+const AnimeList = ({ animeList, history }) => {
   return (
     <AnimeListWrapper>
       {animeList &&
@@ -23,6 +24,7 @@ const AnimeList = ({ animeList }) => {
               name={name}
               description={description}
               malRating={malRating}
+              click={() => history.push(`/anime/${_id}`)}
             />
           );
         })}
@@ -30,4 +32,4 @@ const AnimeList = ({ animeList }) => {
   );
 };
 
-export default AnimeList;
+export default withRouter(AnimeList);

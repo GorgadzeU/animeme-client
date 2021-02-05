@@ -55,9 +55,9 @@ const CardInfoDesc = styled.div`
   font-size: 1.3rem;
 `;
 
-const AnimeCard = ({ name, description, image }) => {
+const AnimeCard = ({ name, description, image, click }) => {
   return (
-    <Card image={image}>
+    <Card image={image} onClick={click}>
       <CardInfo>
         <CardInfoTitle>{name}</CardInfoTitle>
         <CardInfoDetails>

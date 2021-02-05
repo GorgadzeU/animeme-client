@@ -5,6 +5,9 @@ import {
   FETCH_ANIME_CAT_START,
   FETCH_ANIME_CAT_SUCCESS,
   FETCH_ANIME_CAT_FAIL,
+  FETCH_ANIME_START,
+  FETCH_ANIME_SUCCESS,
+  FETCH_ANIME_FAIL,
 } from './anime.types';
 
 const INIT_STATE = {
@@ -20,6 +23,7 @@ const animeReducer = (state = INIT_STATE, action) => {
   switch (type) {
     case FETCH_ANIME_LIST_START:
     case FETCH_ANIME_CAT_START:
+    case FETCH_ANIME_START:
       return {
         ...state,
         loading: true,
@@ -36,8 +40,15 @@ const animeReducer = (state = INIT_STATE, action) => {
         animeCatList: payload,
         loading: false,
       };
+    case FETCH_ANIME_SUCCESS:
+      return {
+        ...state,
+        anime: payload,
+        loading: false,
+      };
     case FETCH_ANIME_LIST_FAIL:
     case FETCH_ANIME_CAT_FAIL:
+    case FETCH_ANIME_FAIL:
       return {
         ...state,
         error: payload,

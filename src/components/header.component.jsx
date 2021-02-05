@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { DARK } from './UI/colors';
-
 import { Link } from 'react-router-dom';
+import UserCreds from './user-creds.component';
+
+import { onShowSignIn, onShowSignUp } from '../redux/forms/forms.actions';
 
 const HeaderWrapper = styled.header`
   background-color: ${DARK};
@@ -63,17 +66,27 @@ const NavItem = styled.span`
   cursor: pointer;
 `;
 
-const Header = () => {
+const Header = ({ onShowSignIn, onShowSignUp, user }) => {
+  console.log(user);
   return (
     <HeaderWrapper>
-      <LOGO>Logo</LOGO>
+      <LOGO>
+        <a href='/'>Logo</a>
+      </LOGO>
       <Nav>
         <NavItem>Category</NavItem>
         <NavItem>Shop</NavItem>
-        <NavItem>Contact</NavItem>
-        <NavItem>Sing In</NavItem>
+        {/* <NavItem>Contact</NavItem> */}
+        {user ? (
+          <UserCreds name={user.name} />
+        ) : (
+          <>
+            <NavItem onClick={onShowSignIn}>Sign In</NavItem>
+            <NavItem onClick={onShowSignUp}>Sign Up</NavItem>
+          </>
+        )}
         <CategoryDropdown>
-          <Link to='/seinen'>Seinen</Link>
+          <Link to='/categories/seinen'>Seinen</Link>
           <span>Fantasy</span>
           <span>Shounen</span>
         </CategoryDropdown>
@@ -82,4 +95,13 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onShowSignIn: () => dispatch(onShowSignIn()),
+  onShowSignUp: () => dispatch(onShowSignUp()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
