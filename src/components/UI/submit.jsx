@@ -9,6 +9,7 @@ const CustomSubmit = styled.input`
   border: none;
   transition: all 0.4s ease;
   background-color: #ffa500;
+  text-align: center;
 
   &:active {
     outline: none;

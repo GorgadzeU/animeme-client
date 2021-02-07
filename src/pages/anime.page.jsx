@@ -8,11 +8,9 @@ import AnimePlayer from '../components/anime-player.component';
 
 import { FetchAnimeByIdStart } from '../redux/anime/anime.actions';
 
-import IMG from '../assets/zerkpage.jpg';
-
 const Container = styled(PageWrapper)`
   max-width: 100vw;
-  background: url(${IMG}) no-repeat center center;
+  background: url(${(props) => props.backgroundImage}) no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
 `;
@@ -21,7 +19,7 @@ const LoadingContainer = styled(PageWrapper)`
   max-width: 100vw;
 `;
 
-const AnimePage = ({ anime, episodeList, loading, fetchById, match }) => {
+const AnimePage = ({ anime, loading, fetchById, match }) => {
   useEffect(() => {
     fetchById(match.params.animeId);
   }, [fetchById, match.params.animeId]);
@@ -36,9 +34,9 @@ const AnimePage = ({ anime, episodeList, loading, fetchById, match }) => {
   return (
     <>
       {/* <BackgroundImage /> */}
-      <Container>
+      <Container backgroundImage={anime.backImage}>
         <AnimeSummary anime={anime} />
-        {/* <AnimePlayer episodeList={episodeList} /> */}
+        <AnimePlayer episodes={anime.episodes} />
       </Container>
     </>
   );

@@ -32,7 +32,8 @@ const Select = styled.select`
   }
 `;
 
-const AnimePlayer = ({ episodeList: { episodes } }) => {
+const AnimePlayer = ({ episodes }) => {
+  console.log(episodes);
   const [ep, setEp] = useState(0);
 
   if (!episodes) {
@@ -47,7 +48,7 @@ const AnimePlayer = ({ episodeList: { episodes } }) => {
         onChange={(e) => setEp(e.target.value)}
       >
         {episodes.map((ep, i) => (
-          <option value={i}>Episode - {i + 1}</option>
+          <option value={i}>Episode - {ep.ep}</option>
         ))}
         {/* <option value='0'>1</option>
         <option value='1'>2</option> */}
@@ -55,7 +56,7 @@ const AnimePlayer = ({ episodeList: { episodes } }) => {
       <iframe
         width='100%'
         height='500px'
-        src={episodes && `https://www.youtube.com/embed/${episodes[ep].url}`}
+        src={episodes[ep].url}
         frameBorder='0'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
         allowFullScreen

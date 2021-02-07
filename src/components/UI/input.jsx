@@ -6,7 +6,15 @@ const CustomInput = styled.input`
   margin-bottom: 10px;
 `;
 
-const Input = ({ className, type, name, onChange, placeholder, value }) => {
+const Input = ({
+  className,
+  type,
+  name,
+  onChange,
+  placeholder,
+  value,
+  ...otherProps
+}) => {
   return (
     <CustomInput
       className={className}
@@ -15,6 +23,7 @@ const Input = ({ className, type, name, onChange, placeholder, value }) => {
       type={type}
       name={name}
       placeholder={placeholder}
+      {...otherProps}
     />
   );
 };

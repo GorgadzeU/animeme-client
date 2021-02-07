@@ -30,7 +30,27 @@ const SignUp = ({ onShowSignIn, registerStart }) => {
     password: '',
     password_confirm: '',
   });
+  const [avatar, setAvatar] = useState('');
+  const [avatarPreview, setAvatarPreview] = useState('');
   const { name, email, password, password_confirm } = creds;
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    previewFile(file);
+  };
+
+  const previewFile = (file, name) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setAvatarPreview(reader.result);
+      setCreds((prevState) => ({
+        ...prevState,
+        image: reader.result,
+      }));
+    };
+  };
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -47,6 +67,7 @@ const SignUp = ({ onShowSignIn, registerStart }) => {
       password: '',
       password_confirm: '',
     }));
+
     registerStart(creds);
   };
 
@@ -54,6 +75,22 @@ const SignUp = ({ onShowSignIn, registerStart }) => {
     <FormWrapper>
       <Title>Sign In</Title>
       <form onSubmit={(e) => onSubmit(e)}>
+        <label htmlFor='file-upload' className='custom-file-upload'>
+          Upload Avatar
+        </label>
+        <input
+          name='file-upload'
+          id='file-upload'
+          type='file'
+          value={avatar}
+          onChange={(e) => handleAvatarChange(e)}
+        />
+
+        {avatarPreview && (
+          <div className='avatar-preview'>
+            <img style={{ width: '50px' }} src={avatarPreview} alt='' />
+          </div>
+        )}
         <Input
           name='name'
           type='text'

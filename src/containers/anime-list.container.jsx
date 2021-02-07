@@ -12,18 +12,18 @@ const AnimeListWrapper = styled.div`
 `;
 
 const AnimeList = ({ animeList, history }) => {
+  console.log(animeList);
   return (
     <AnimeListWrapper>
       {animeList &&
         animeList.length > 0 &&
-        animeList.map(({ name, image, description, malRating, _id }) => {
+        animeList.map(({ name, mainImage, description, _id }) => {
           return (
             <AnimeCard
               key={_id}
-              image={image}
+              image={mainImage}
               name={name}
               description={description}
-              malRating={malRating}
               click={() => history.push(`/anime/${_id}`)}
             />
           );

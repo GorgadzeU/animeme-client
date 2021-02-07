@@ -43,12 +43,12 @@ const Info = styled.div`
 `;
 
 const AnimeSummary = ({
-  anime: { description, genres, image, name, year },
+  anime: { description, genres, mainImage, name, year },
 }) => {
   return (
     <Wrapper>
       <Image>
-        <img src={image} />
+        <img src={mainImage} />
       </Image>
       <Description>
         <h1>Description</h1>

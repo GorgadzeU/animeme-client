@@ -18,7 +18,7 @@ import {
 export function* fetchAnimeListAsync() {
   try {
     // const { data } = yield axios.get('https://animeme-beta.herokuapp.com/animes/all');
-    const { data } = yield Axios.get('/animes/all');
+    const { data } = yield Axios.get('api/animes/all');
     yield put(FetchAnimeListSuccess(data));
   } catch (err) {
     yield put(FetchAnimeListFail(err));
@@ -27,7 +27,7 @@ export function* fetchAnimeListAsync() {
 
 export function* fetchAnimeByCatAsync({ payload }) {
   try {
-    const { data } = yield Axios.get(`/animes/category/${payload}`);
+    const { data } = yield Axios.get(`api/animes/category/${payload}`);
 
     yield put(FetchAnimeByCatSuccess(data));
   } catch (err) {
@@ -40,7 +40,7 @@ export function* fetchAnimeByIdAsync({ payload }) {
   try {
     const { data } = yield Axios({
       method: 'post',
-      url: `/animes/getById`,
+      url: `api/animes/getById`,
       data: {
         id: payload,
       },

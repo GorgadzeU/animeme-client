@@ -51,7 +51,7 @@ const UserCreds = ({ name, img, logOut }) => {
   return (
     <Profile>
       <ImageWrapper>
-        <img src={IMG} alt='' />
+        <img src={img} alt='' />
       </ImageWrapper>
       <Name>{name}</Name>
       <Hover>

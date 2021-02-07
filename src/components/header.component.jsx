@@ -78,7 +78,7 @@ const Header = ({ onShowSignIn, onShowSignUp, user }) => {
         <NavItem>Shop</NavItem>
         {/* <NavItem>Contact</NavItem> */}
         {user ? (
-          <UserCreds name={user.name} />
+          <UserCreds name={user.name} img={user.avatar} />
         ) : (
           <>
             <NavItem onClick={onShowSignIn}>Sign In</NavItem>

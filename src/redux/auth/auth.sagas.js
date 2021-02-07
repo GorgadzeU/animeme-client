@@ -9,12 +9,11 @@ import {
   loadUserSuccess,
   loadUserFail,
 } from './auth.actions';
-import { toast } from 'react-toastify';
-import { setAlertStart } from '../alert/alert.actions';
+
 import { closeForms } from '../forms/forms.actions';
 
 export function* registerAsync({ payload }) {
-  const { name, email, password, password_confirm } = payload;
+  const { name, email, password, password_confirm, image } = payload;
 
   try {
     const { data } = yield Axios({
@@ -25,6 +24,7 @@ export function* registerAsync({ payload }) {
         email: email,
         password: password,
         password_confirm: password_confirm,
+        image: image,
       },
     });
     yield put(registerSuccess(data));
@@ -53,7 +53,6 @@ export function* loginAsync({ payload }) {
     yield put(closeForms());
   } catch ({ response: { data } }) {
     yield put(loginFail(data));
-    yield put(setAlertStart({ msg: data.msg, alertType: 'danger' }));
   }
 }
 
@@ -68,7 +67,11 @@ export function* loadUserAsync({ payload }) {
     });
     yield put(loadUserSuccess(data));
   } catch (err) {
-    yield put(loadUserFail(err.response.data));
+    if (err.response) {
+      yield put(loadUserFail(err.response.data));
+    } else {
+      yield put(loadUserFail({ msg: 'SERVER ERROR' }));
+    }
   }
 }
 
